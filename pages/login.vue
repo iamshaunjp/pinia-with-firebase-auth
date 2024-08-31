@@ -14,8 +14,8 @@
           Login
         </button>
 
-        <p class="text-red-500 mt-4 text-center">
-          <!--error feedback-->
+        <p v-if="authStore.loginError" class="text-red-500 mt-4 text-center">
+          {{ authStore.loginError }}
         </p>
       </form>
     </div>
@@ -23,12 +23,16 @@
 </template>
 
 <script setup>
+import { useAuthStore } from '@/stores/auth'
 
 const email = ref('')
 const password = ref('')
+const authStore = useAuthStore()
 
 const handleLogin = async () => {
-  console.log(email.value, password.value)
+  console.log('before login:', authStore.user)
+  await authStore.login(email.value, password.value)
+  console.log('after login:', authStore.user)
 }
 
 </script>

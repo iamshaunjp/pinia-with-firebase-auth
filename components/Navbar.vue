@@ -26,8 +26,8 @@ import { useAuthStore } from '@/stores/auth'
 const authStore = useAuthStore()
 
 const handleLogout = async () => {
-  // console.log('before logout:', authStore.user)
+  console.log('before logout:', authStore.user)
   await authStore.logout()
-  // console.log('after logout:', authStore.user)
+  console.log('after logout:', authStore.user)
 }
 </script>

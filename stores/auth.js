@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import {
   createUserWithEmailAndPassword,
-  signOut
+  signOut,
+  signInWithEmailAndPassword
 } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
@@ -35,5 +36,17 @@ export const useAuthStore = defineStore('auth', {
     },
 
     // login
+    async login(email, password) {
+      const { $auth } = useNuxtApp()
+
+      this.loginError = null
+
+      try {
+        const cred = await signInWithEmailAndPassword($auth, email, password)
+        this.user = cred.user
+      } catch (error) {
+        this.loginError = error.message
+      }
+    },
   },
 })
