@@ -5,7 +5,10 @@
     </nuxt-link>
     <div>
 
-      <!-- content here later -->
+      <div class="space-x-4">
+        <nuxt-link to="/login" class="hover:underline">Login</nuxt-link>
+        <nuxt-link to="/signup" class="hover:underline">Sign Up</nuxt-link>
+      </div>
 
     </div>
   </header>
