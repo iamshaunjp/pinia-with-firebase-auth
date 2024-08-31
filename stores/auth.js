@@ -4,7 +4,7 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
     loginError: null,
-    signinError: null,
+    signupError: null,
   }),
 
   actions: {
