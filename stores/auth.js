@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 import {
   createUserWithEmailAndPassword,
   signOut,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
@@ -13,6 +14,19 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   actions: {
+    setupAuthListener() {
+      const { $auth } = useNuxtApp()
+
+      if ($auth) {
+        onAuthStateChanged($auth, (user) => {
+          this.user = user || null
+          console.log('user state change:', this.user)
+        })
+      } else {
+        console.error('Firebase Auth is not initialized');
+      }
+    },
+
     // signup
     async signup(email, password) {
       const { $auth } = useNuxtApp()
@@ -21,7 +35,6 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         const cred = await createUserWithEmailAndPassword($auth, email, password)
-        this.user = cred.user
       } catch (error) {
         this.signupError = error.message
       }
@@ -32,7 +45,6 @@ export const useAuthStore = defineStore('auth', {
       const { $auth } = useNuxtApp()
 
       await signOut($auth)
-      this.user = null
     },
 
     // login
@@ -43,7 +55,6 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         const cred = await signInWithEmailAndPassword($auth, email, password)
-        this.user = cred.user
       } catch (error) {
         this.loginError = error.message
       }
