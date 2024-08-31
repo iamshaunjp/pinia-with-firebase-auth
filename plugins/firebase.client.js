@@ -25,5 +25,3 @@ export default defineNuxtPlugin(() => {
   }
 
 })
-
-// const { $auth } = useNuxtApp()
