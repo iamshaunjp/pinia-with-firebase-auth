@@ -14,8 +14,7 @@ export const useAuthStore = defineStore('auth', {
     // signup
     async signup(email, password) {
       const { $auth } = useNuxtApp()
-
-      this.loading = true
+      
       this.signupError = null
 
       try {
