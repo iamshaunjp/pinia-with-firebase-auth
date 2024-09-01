@@ -33,4 +33,7 @@ const handleLogin = async () => {
   await authStore.login(email.value, password.value)
 }
 
+definePageMeta({
+  middleware: ['guest'],
+})
 </script>

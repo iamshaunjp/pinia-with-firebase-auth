@@ -18,6 +18,9 @@ onMounted(async () => {
   habitStore.fetchHabits()
 })
 
+definePageMeta({
+  middleware: ['auth'], 
+})
 </script>
 
 <style>
