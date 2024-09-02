@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useHabitStore } from '@/stores/habits'
 import {
   createUserWithEmailAndPassword,
   signOut,
@@ -45,8 +46,10 @@ export const useAuthStore = defineStore('auth', {
     // logout
     async logout() {
       const { $auth } = useNuxtApp()
+      const habitStore = useHabitStore()
 
       await signOut($auth)
+      habitStore.resetHabits()
     },
 
     // login
