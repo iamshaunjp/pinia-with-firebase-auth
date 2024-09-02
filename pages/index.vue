@@ -1,10 +1,8 @@
 <template>
-  <HideFromGuests>
-    <div class="mx-auto p-6 max-w-2xl">
-      <HabitForm />
-      <HabitList :habits="habitStore.habits" />
-    </div>
-  </HideFromGuests>
+  <div class="mx-auto p-6 max-w-2xl">
+    <HabitForm />
+    <HabitList :habits="habitStore.habits" />
+  </div>
 </template>
 
 <script setup>
