@@ -33,12 +33,13 @@ export const useHabitStore = defineStore('habitStore', {
     // adding new habits
     async addHabit(name) {
       this.error = null
-      const { $db } = useNuxtApp()
+      const { $db, $auth } = useNuxtApp()
 
       const habit = {
         name,
         completions: [],
         streak: 0,
+        userId: $auth.currentUser.uid
       }
 
       try {
