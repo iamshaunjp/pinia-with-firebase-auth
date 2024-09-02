@@ -11,6 +11,7 @@ export const useAuthStore = defineStore('auth', {
     user: null,
     loginError: null,
     signupError: null,
+    initialAuthValueReady: false,
   }),
 
   actions: {
@@ -21,6 +22,7 @@ export const useAuthStore = defineStore('auth', {
         onAuthStateChanged($auth, (user) => {
           this.user = user || null
           console.log('user state change:', this.user)
+          this.initialAuthValueReady = true
         })
       } else {
         console.error('Firebase Auth is not initialized');
